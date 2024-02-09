@@ -1,6 +1,6 @@
 # Palworld Helm Chart
 
-Allows you to deploy the usage of [Palworld Server docker](https://github.com/Filipe-Souza/palworld-server-docker) as
+Allows you to deploy the usage of [Palworld Server docker](https://github.com/thijsvanloef/palworld-server-docker) as
 a helm chart and with helm deployments.
 
 This is an advanced method of installation and can be quite difficult to non-technical trying to set it up.
@@ -17,7 +17,7 @@ like ArgoCD/FluxCD.
 After cloning the repository, you can create a new file, e.g.: values.override.yaml to store your custom values.
 
 After copying, modify your values.override.yaml as needed. You can look up the
-[values summary](VALUES_SUMMARY.md) to see the parameter documentation.
+[values summary](./charts/palworld/VALUES_SUMMARY.md) to see the parameter documentation.
 
 After that, you can apply the chart:
 
