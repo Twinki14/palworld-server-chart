@@ -1,32 +1,27 @@
-# Palworld Helm Chart
+# palworld-server-chart
 
-Allows you to deploy the usage of [Palworld Server docker](https://github.com/thijsvanloef/palworld-server-docker) as
-a helm chart and with helm deployments.
+[![GitHub License](https://img.shields.io/github/license/Twinki14/palworld-server-chart?style=flat-square)](htps://github.com/Twinki14/palworld-server-chart/blob/main/LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/Twinki14/palworld-server-chart?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/releases)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/twinki14/palworld-server-chart/total)](htps://github.com/Twinki14/palworld-server-chart/releases)
 
-This is an advanced method of installation and can be quite difficult to non-technical trying to set it up.
+Official helm chart for the popular [Palworld Server Docker](https://github.com/thijsvanloef/palworld-server-docker) docker image
 
-## Dependencies
 
-You will need the [Helm client](https://helm.sh/docs/intro/install/) and a Kubernetes cluster.
+## Usage
 
-## Install the chart
+[Helm](https://helm.sh) must be installed to use the charts.
+Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
-There is no helm package available yet, so you need to clone this repo and setup it manually, or with some GitOps tool
-like ArgoCD/FluxCD.
+Once Helm is set up properly, add the repository as follows:
 
-After cloning the repository, you can create a new file, e.g.: values.override.yaml to store your custom values.
-
-After copying, modify your values.override.yaml as needed. You can look up the
-[values summary](./charts/palworld/VALUES_SUMMARY.md) to see the parameter documentation.
-
-After that, you can apply the chart:
-
-```bash
-helm install --create-namespace --namespace palworld palworld chart/ --values values.override.yaml
+```console
+helm repo add palworld-server https:/twinki14.github.io/palworld-server-chart
 ```
 
-You can remove all the resources created (except the PVC) with the following command:
+You can then run `helm search repo prometheus-community` to see the charts.
 
-```bash
-helm uninstall -n palworld palworld
-```
+## Values
+
+You can find the `values.yaml` summary in [the charts directory](./charts/palworld/VALUES_SUMMARY.md)
+
+
