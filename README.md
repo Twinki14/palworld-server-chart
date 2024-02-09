@@ -1,8 +1,8 @@
 # palworld-server-chart
 
-[![GitHub License](https://img.shields.io/github/license/Twinki14/palworld-server-chart?style=flat-square)](htps://github.com/Twinki14/palworld-server-chart/blob/main/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/Twinki14/palworld-server-chart?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/blob/main/LICENSE)
 [![GitHub release](https://img.shields.io/github/v/release/Twinki14/palworld-server-chart?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/releases)
-[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/twinki14/palworld-server-chart/total)](htps://github.com/Twinki14/palworld-server-chart/releases)
+[![GitHub Downloads](https://img.shields.io/github/downloads/twinki14/palworld-server-chart/total?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/releases)
 
 Official helm chart for the popular [Palworld Server Docker](https://github.com/thijsvanloef/palworld-server-docker) docker image
 
