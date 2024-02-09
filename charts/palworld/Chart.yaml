@@ -1,7 +1,7 @@
 apiVersion: v2
 name: palworld
 version: 0.1.1
-description: This chart will provide a Palworld server installation on a kubernetes cluster
+description: Official helm chart for the palworld-server-docker docker image, used for deploying a PalWorld Server in Kubernetes
 type: application
 keywords:
 - palworld
@@ -16,7 +16,7 @@ maintainers:
 - name: Filipe Souza
   email: filipe.souza@mestre8d.com
   url: https://github.com/Filipe-Souza
-- name: Twinki
+- name: Twinki14
   url: https://github.com/Twinki14
 icon: https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg
 appVersion: "latest"
