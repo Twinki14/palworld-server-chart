@@ -16,10 +16,10 @@ Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 Once Helm is set up properly, add the repository as follows:
 
 ```console
-helm repo add palworld-server https:/twinki14.github.io/palworld-server-chart
+helm repo add palworld https:/twinki14.github.io/palworld-server-chart
 ```
 
-You can then run `helm search repo prometheus-community` to see the charts.
+You can then run `helm search repo palworld` to see the charts.
 
 ## Values
 
