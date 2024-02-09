@@ -24,5 +24,3 @@ You can then run `helm search repo palworld` to see the charts.
 ## Values
 
 You can find the `values.yaml` summary in [the charts directory](https://github.com/Twinki14/palworld-server-chart/blob/main/charts/palworld/values.yaml)
-
-
