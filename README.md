@@ -1,6 +1,6 @@
 # palworld-server-chart
 
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/palworld-server-chart)](https://artifacthub.io/packages/search?repo=palworld-server-chart)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/palworld-server-chart&style=flat-square)](https://artifacthub.io/packages/search?repo=palworld-server-chart)
 [![GitHub License](https://img.shields.io/github/license/Twinki14/palworld-server-chart?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/blob/main/LICENSE)
 [![GitHub release](https://img.shields.io/github/v/release/Twinki14/palworld-server-chart?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/releases)
 [![GitHub Downloads](https://img.shields.io/github/downloads/twinki14/palworld-server-chart/total?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/releases)
