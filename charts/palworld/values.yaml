@@ -40,12 +40,14 @@ server:
   - name: game
     containerPort: 8211
     protocol: UDP
+
   - name: query
     containerPort: 27015
     protocol: UDP
+
   - name: rcon
     containerPort: 25575
-    protocol: UDP
+    protocol: TCP
 
   # Deployment strategy
   #
@@ -88,7 +90,7 @@ server:
 
     - name: rcon
       port: 25575
-      protocol: UDP
+      protocol: TCP
       targetPort: 25575
 
   # Palworld-server specific configuration
