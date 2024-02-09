@@ -144,6 +144,7 @@ server:
       serviceAccount: "daily-reboot"
 
     # Any additional environment variables related to the palworld-server-docker image
+    # Note, it's recommended to wrap values of the environment variables in quotes
     #
     env:
 
