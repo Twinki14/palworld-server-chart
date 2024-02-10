@@ -18,11 +18,13 @@ server:
   # Storage definitions related to the palworld-server
   #
   storage:
-    # -- Use an existing PVC
     external: false
     externalName: ""
-    # -- Keeps helm from deleting the PVC, by default helm does not delete pvcs
+
+    # Keeps helm from deleting the PVC, by default helm does not delete pvcs
+    #
     preventDelete: false
+
     size: 12Gi
     storageClassName: ""
 
