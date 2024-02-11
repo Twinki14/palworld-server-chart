@@ -53,7 +53,7 @@ server:
   strategy: Recreate
 
   # Service configuration
-  # 
+  #
   service:
     enabled: true
     annotations: {}
@@ -108,7 +108,7 @@ server:
       port: 25575
 
       # If not provided a random password will be generated and stored as a secret
-      # 
+      #
       password: ""
 
     # Community server settings
@@ -146,7 +146,7 @@ server:
 
     # Any additional environment variables related to the palworld-server-docker image
     # -- Note, it's recommended to wrap values of the environment variables in quotes
-    # -- You can find a list of these environment variables in the palworld-server-docker readme 
-    # -- https://github.com/thijsvanloef/palworld-server-docker/tree/main 
+    # -- You can find a list of these environment variables in the palworld-server-docker readme
+    # -- https://github.com/thijsvanloef/palworld-server-docker/tree/main
     #
     env:
