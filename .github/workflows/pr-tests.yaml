@@ -3,7 +3,34 @@ name: Lint and Test Charts
 on: pull_request
 
 jobs:
-  lint-test:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Helm - chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          install_only: true
+
+      - name: Helm - chart-testing
+        uses: helm/chart-testing-action@v2.6.1
+
+      - name: Helm - chart-testing - list-changed
+        id: list-changed
+        run: |
+          changed=$(ct list-changed --config ct.yaml)
+          if [[ -n "$changed" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Helm - chart-testing - lint
+        run: ct lint --config ct.yaml
+
+  e2e-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,9 +61,6 @@ jobs:
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
-
-      - name: Helm - chart-testing - lint
-        run: ct lint --config ct.yaml
 
       - name: K8S - Create Kind Cluster
         uses: helm/kind-action@v1.8.0
