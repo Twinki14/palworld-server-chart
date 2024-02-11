@@ -19,7 +19,12 @@ Once Helm is set up properly, add the repository as follows:
 helm repo add palworld-server https://twinki14.github.io/palworld-server-chart
 ```
 
-You can then run `helm search repo palworld` to see the charts.
+Running `helm search repo palworld-server` should now display the chart and it's versions
+
+To install the helm chart, use
+```console
+helm install palworld palworld-server/palworld --create-namespace --namespace palworld-server
+```
 
 ## Values
 
