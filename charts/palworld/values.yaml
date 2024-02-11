@@ -1,8 +1,4 @@
-# Namespace where the resources will be created
-#
-namespace: palworld-server
-
-# General annotations, labels, and resources limits for the resources
+# Server deployment annotations, labels, and resources limits
 #
 server:
   annotations: {}
@@ -32,8 +28,9 @@ server:
   #
   image:
     repository: thijsvanloef/palworld-server-docker
-    tag: latest
+    tag: v0.24.2
     imagePullPolicy: IfNotPresent
+    imagePullSecrets: []
 
   # Server-related ports
   # Be sure your service.ports and config.ports matches this section
@@ -153,4 +150,3 @@ server:
     # -- https://github.com/thijsvanloef/palworld-server-docker/tree/main 
     #
     env:
-

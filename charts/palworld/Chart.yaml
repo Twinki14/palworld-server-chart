@@ -19,7 +19,7 @@ maintainers:
 - name: Twinki14
   url: https://github.com/Twinki14
 icon: https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg
-appVersion: "0.24.2"
+appVersion: "v0.24.2"
 deprecated: false
 annotations:
   artifacthub.io/alternativeName: palworld-server
