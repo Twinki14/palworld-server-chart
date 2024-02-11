@@ -4,6 +4,8 @@
 [![GitHub License](https://img.shields.io/github/license/Twinki14/palworld-server-chart?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/blob/main/LICENSE)
 [![GitHub release](https://img.shields.io/github/v/release/Twinki14/palworld-server-chart?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/releases)
 [![GitHub Downloads](https://img.shields.io/github/downloads/twinki14/palworld-server-chart/total?style=flat-square)](https://github.com/Twinki14/palworld-server-chart/releases)
+[![OCI security profiles](https://img.shields.io/badge/oci%3A%2F%2F-palworld%20server%20chart-blue?logo=kubernetes&logoColor=white&style=flat-square)](https://github.com/twinki14/palworld-server-chart/packages)
+
 
 Official helm chart for the popular [Palworld Server Docker](https://github.com/thijsvanloef/palworld-server-docker) docker image
 
