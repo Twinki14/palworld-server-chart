@@ -39,10 +39,6 @@ spec:
         - name: server
           image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag }}"
           imagePullPolicy: {{ .Values.server.image.imagePullPolicy }}
-          {{- with .Values.server.image.imagePullSecrets }}
-          imagePullSecrets:
-            {{- toYaml . | nindent 8 }}
-          {{- end }}
           lifecycle:
             preStop:
               exec:
@@ -70,6 +66,10 @@ spec:
           volumeMounts:
             - mountPath: /palworld
               name: datadir
+      {{- with .Values.server.image.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         - name: datadir
           persistentVolumeClaim:
