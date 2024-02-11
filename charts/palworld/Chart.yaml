@@ -8,6 +8,9 @@ keywords:
 - server
 - kubernetes
 - helm
+- game
+- dedicated-server
+- game-server
 home: https://github.com/twinki14/palworld-server-chart
 sources:
 - https://github.com/thijsvanloef/palworld-server-docker
