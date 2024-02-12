@@ -28,7 +28,7 @@ server:
   #
   image:
     repository: thijsvanloef/palworld-server-docker
-    tag: v0.24.2
+    tag: v0.25.0
     imagePullPolicy: IfNotPresent
     imagePullSecrets: []
 
@@ -150,3 +150,6 @@ server:
     # -- https://github.com/thijsvanloef/palworld-server-docker/tree/main
     #
     env:
+      # When set to true, the PalWorldServer.ini will be generated based on environment variables found here https://github.com/thijsvanloef/palworld-server-docker/blob/main/README.md
+      #
+      DISABLE_GENERATE_SETTINGS: "false"
