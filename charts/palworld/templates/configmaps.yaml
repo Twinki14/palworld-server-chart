@@ -54,12 +54,16 @@ data:
     function exec_rcon_cmd() {
       kubectl exec -n {{ .Release.Namespace }} -i pod/$cont rcon-cli "$1"
     }
-    
+
+    function exec_container_cmd() {
+      kubectl exec -n {{ .Release.Namespace }} -i pod/$cont -- "$1"
+    }
+
     exec_rcon_cmd "Broadcast Saving_Server_Data..."
     exec_rcon_cmd save
     sleep 30
     exec_rcon_cmd "Broadcast Backing_up_Server_Data..."
-    exec_rcon_cmd backup
+    exec_container_cmd backup
     sleep 30
 
     step=5
