@@ -75,9 +75,8 @@ server:
     preStop:
       exec:
         command:
-          - "sh"
-          - "-c"
-          - rcon-cli save && backup
+          - bash
+          - /usr/local/bin/backup
 
   # Service configuration
   #

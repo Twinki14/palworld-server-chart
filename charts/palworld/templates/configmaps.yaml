@@ -50,10 +50,11 @@ data:
   restart-deployment.sh:  |
     #!/bin/bash
     set -euo pipefail
+  {{- if .Values.server.config.rcon.enable }}
     cont=$(kubectl -n {{ .Release.Namespace }} get pods -o=jsonpath='{.items[?(@.metadata.labels.app\.kubernetes\.io/name=="{{ .Release.Name }}-server")].metadata.name}')
     
     function exec_rcon_cmd() {
-      kubectl exec -n {{ .Release.Namespace }} -i pod/$cont rcon-cli "$1"
+      kubectl exec -n {{ .Release.Namespace }} -i pod/$cont -- rcon-cli "$1"
     }
 
     function exec_container_cmd() {
@@ -75,6 +76,7 @@ data:
 
     exec_rcon_cmd "Shutdown 1"
     sleep 30
+  {{ end }}
     kubectl -n {{ .Release.Namespace }} rollout restart deployment/{{ .Release.Name }}-server
   {{ end }}
   {{ end }}
