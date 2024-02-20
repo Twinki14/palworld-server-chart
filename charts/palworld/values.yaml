@@ -144,6 +144,8 @@ server:
     daily_reboot:
       enable: false
 
+      countdown_seconds: 30
+
       # UTC cron syntax for server reboot schedule, https://crontab.guru/
       # Defaults to 9:30am UTC
       #
