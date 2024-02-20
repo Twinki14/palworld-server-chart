@@ -60,14 +60,24 @@ spec:
             - name: ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
+                {{- if not .Values.server.config.rcon.externalPassword }}
                   name: "{{ .Release.Name }}-rcon-password"
                   key: "rconPassword"
+                {{- else }}
+                  name: "{{ .Values.server.config.rcon.externalPassword.name }}"
+                  key: "{{ .Values.server.config.rcon.externalPassword.key }}"
+                {{- end }}
             {{- if .Values.server.config.community.enable }}
             - name: SERVER_PASSWORD
               valueFrom:
                 secretKeyRef:
+                {{- if not .Values.server.config.community.externalPassword }}
                   name: "{{ .Release.Name }}-community-password"
                   key: "communityPassword"
+                {{- else }}
+                  name: "{{ .Values.server.config.community.externalPassword.name }}"
+                  key: "{{ .Values.server.config.community.externalPassword.key }}"
+                {{- end }}
             {{- end }}
           envFrom:
             - configMapRef:

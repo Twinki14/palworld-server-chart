@@ -111,11 +111,21 @@ server:
       #
       password: ""
 
+      # If provided, the password will be loaded from an existing secret
+      externalPassword: {}
+        # The name of the secret containing the rcon password
+        # name: ""
+        # The key in the secret containing the rcon password
+        # key: ""
+
     # Community server settings
     #
     community:
       enable: true
       password: ""
+      externalPassword: {}
+        # name: ""
+        # key: ""
 
     # General server settings
     server_name: ""
