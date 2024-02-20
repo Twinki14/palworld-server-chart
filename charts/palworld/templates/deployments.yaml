@@ -62,6 +62,13 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-rcon-password"
                   key: "rconPassword"
+            {{- if .Values.server.config.community.enable }}
+            - name: SERVER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-community-password"
+                  key: "communityPassword"
+            {{- end }}
           envFrom:
             - configMapRef:
                 name: "{{ .Release.Name }}-env-config"
