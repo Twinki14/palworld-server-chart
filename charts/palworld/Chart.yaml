@@ -1,6 +1,6 @@
 apiVersion: v2
 name: palworld
-version: 0.26.3
+version: 0.26.4
 description: Official helm chart for the palworld-server-docker docker image, deploys a dedicated PalWorld server to your Kubernetes cluster!
 type: application
 keywords:
