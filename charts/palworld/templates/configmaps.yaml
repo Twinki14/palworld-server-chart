@@ -69,7 +69,7 @@ data:
 
     step=5
     for i in $(seq {{ .Values.server.config.daily_reboot.countdown_seconds }} -$step 1); do
-      exec_rcon_cmd "Broadcast Rebooting_in_$i_seconds..."
+      exec_rcon_cmd "Broadcast Rebooting_in_${i}_seconds..."
       sleep $step
     done
 
