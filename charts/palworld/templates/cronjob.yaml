@@ -3,7 +3,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: "{{ .Values.server.config.daily_reboot.serviceAccount }}"
-  namespace:  {{ .Values.namespace }}
+  namespace:  {{ .Release.Namespace }}
 spec:
   concurrencyPolicy:  Forbid
   schedule: "{{ .Values.server.config.daily_reboot.time }}"
