@@ -70,6 +70,7 @@ server:
     #   initialDelaySeconds: 60
 
   # Container lifecycle
+  terminationGracePeriodSeconds: 30
   lifecycle:
     preStop:
       exec:

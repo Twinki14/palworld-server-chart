@@ -90,6 +90,7 @@ spec:
           volumeMounts:
             - mountPath: /palworld
               name: datadir
+      terminationGracePeriodSeconds: {{ .Values.server.terminationGracePeriodSeconds }}
       {{- with .Values.server.image.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
