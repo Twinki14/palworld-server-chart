@@ -69,6 +69,15 @@ server:
     #     - rcon-cli Info | grep -q "Welcome to Pal Server"
     #   initialDelaySeconds: 60
 
+  # Container lifecycle
+  lifecycle:
+    preStop:
+      exec:
+        command:
+          - "sh"
+          - "-c"
+          - rcon-cli save && backup
+
   # Service configuration
   #
   service:

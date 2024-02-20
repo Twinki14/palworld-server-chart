@@ -41,13 +41,10 @@ spec:
         - name: server
           image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag }}"
           imagePullPolicy: {{ .Values.server.image.imagePullPolicy }}
+          {{- with .Values.server.lifecycle }}
           lifecycle:
-            preStop:
-              exec:
-                command:
-                  - "sh"
-                  - "-c"
-                  - rcon-cli save && backup
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           resources:
             {{- with .Values.server.resources }}
               {{- toYaml . | nindent 12 }}
