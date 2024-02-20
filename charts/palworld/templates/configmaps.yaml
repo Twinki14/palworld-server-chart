@@ -1,4 +1,3 @@
-{{- $cPwd := randAlphaNum 12 | nospace -}}
 {{- $sName := "" -}}
 apiVersion: v1
 kind: ConfigMap
@@ -31,7 +30,6 @@ data:
   {{ end }}
   {{ if .Values.server.config.community.enable }}
   COMMUNITY: "true"
-  SERVER_PASSWORD: {{- if .Values.server.config.community.password }} "{{ .Values.server.config.community.password }}" {{ else }} {{ $cPwd }} {{ end }}
   {{ end }}
   {{ if .Values.server.config.server_name }}
   SERVER_NAME: {{ regexReplaceAll "\\W+" .Values.server.config.server_name "_" }}
