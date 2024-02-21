@@ -9,12 +9,10 @@ rules:
       resources: ["deployments"]
       resourceNames: ["{{ .Release.Name }}-server"]
       verbs: ["get", "patch"]
-  {{- if .Values.server.config.rcon.enable }}
     - apiGroups: [""]
       resources: ["pods"]
       verbs: ["get", "list"]
     - apiGroups:  [""]
       resources:  ["pods/exec"]
       verbs:  ["create"]
-  {{- end }}
 {{ end }}
