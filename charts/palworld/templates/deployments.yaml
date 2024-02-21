@@ -56,6 +56,14 @@ spec:
             {{- with .Values.server.ports }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
+          {{- with .Values.server.probes.liveness }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.server.probes.readiness }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
             - name: ADMIN_PASSWORD
               valueFrom:
