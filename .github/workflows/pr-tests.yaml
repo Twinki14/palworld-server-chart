@@ -32,7 +32,7 @@ jobs:
           fi
 
       - name: Helm - chart-testing - lint
-        run: ct lint --check-version-increment false --config ct.yaml
+        run: ct lint --check-version-increment=false --config ct.yaml
 
   e2e-test:
     runs-on: ubuntu-latest
