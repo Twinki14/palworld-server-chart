@@ -29,7 +29,7 @@ spec:
           volumes:
           - name: restart-script
             configMap:
-              name: "{{ .Release.Name }}-env-config"
+              name: "{{ .Release.Name }}-restart-deployment"
               defaultMode:  0777
               items:
               - key:  "restart-deployment.sh"
