@@ -46,7 +46,21 @@ data:
   {{- with .Values.server.config.env }}
   {{- toYaml . | nindent 2  }}
   {{- end }}
-  {{ if .Values.server.config.daily_reboot.enable }}
+---
+{{ if .Values.server.config.daily_reboot.enable }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: "{{ .Release.Name }}-restart-deployment"
+  labels:
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/name: "{{ .Release.Name }}-restart-deployment"
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: "{{ .Release.Name }}-restart-deployment"
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+data:
   restart-deployment.sh:  |
     #!/bin/bash
     set -euo pipefail
@@ -81,4 +95,4 @@ data:
   {{ end }}
     kubectl -n {{ .Release.Namespace }} rollout restart deployment/{{ .Release.Name }}-server
   {{ end }}
-  {{ end }}
+{{ end }}
