@@ -73,4 +73,4 @@ jobs:
         if: steps.list-changed.outputs.changed == 'true'
 
       - name: Helm - chart-testing - install
-        run: ct install --config ct.yaml --helm-extra-set-args='--set=server.resources=null --set=server.storage.size=3Gi'
+        run: ct install --config ct.yaml --helm-extra-set-args='--set=server.resources=null --set=server.storage.main.size=3Gi'

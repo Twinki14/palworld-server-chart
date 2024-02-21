@@ -14,15 +14,84 @@ server:
   # Storage definitions related to the palworld-server
   #
   storage:
-    external: false
-    externalName: ""
+    main:
+      external: false
+      externalName: ""
 
-    # Keeps helm from deleting the PVC, by default helm does not delete pvcs
+      # Keeps helm from deleting the PVC, by default helm does not delete pvcs
+      #
+      preventDelete: false
+
+      size: 12Gi
+      storageClassName: ""
+
+    # If not specified, the backups will be stored on the `main` storage
     #
-    preventDelete: false
+    # Supports all storage types as defined by https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/volume/#Volume
+    #
+    # `persistentVolumeClaim` is a special case that matches the `main` storage in definition
+    backups: {}
+      # persistentVolumeClaim:
+      #   external: false
+      #   externalName: ""
+      #   preventDelete: false
+      #   size: 12Gi
+      #   storageClassName: ""
 
-    size: 12Gi
-    storageClassName: ""
+      # nfs:
+      #   server: your.server.ip
+      #   path: /path/to/remote/dir
+
+    # Additional storage definitions
+    #
+    # Supports all storage types as defined by https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/volume/#Volume
+    #
+    # THe objects supports configuring the mount path and the subpath.
+    # If external isn't true, the defined deletion prevention, storage class, and size will be used to create a new PVC
+    extra: []
+
+    # An example of using an existing PVC at a subpath
+    #
+    # - name: existing-pvc
+    #   mountPath: /existing-pvc
+    #   subPath: test
+    #   external: true
+    #   persistentVolumeClaim:
+    #     claimName: existing-pvc
+
+    # An example of creating a new PVC of 5Gi
+    #
+    # - name: new-pvc
+    #   mountPath: /new-pvc
+    #   size: 5Gi
+    #   preventDelete: false
+    #   storageClassName: "my-storage-class"
+    #   persistentVolumeClaim:
+    #     claimName: new-pvc
+
+    # An example of mounting a configmap with key `test.ini` as `config.ini` in /config
+    #
+    # - name: config
+    #   mountPath: /config
+    #   configMap:
+    #     name: app-configfile
+    #     items:
+    #     - key: test.ini
+    #       path: config.ini
+
+    # An example of mounting a secret
+    # - name: keys
+    #   mountPath: /keys
+    #   readOnly: true
+    #   secret:
+    #     secretName: app-keyfile
+
+    # An example of mounting an nfs volume
+    # - name: nfs
+    #   mountPath: /data
+    #   nfs:
+    #     server: your.server.ip
+    #     path: /path/to/dir
 
   # Docker image used for the palworld-server deployment
   #
