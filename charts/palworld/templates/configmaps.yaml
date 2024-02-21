@@ -49,6 +49,7 @@ data:
   {{ if .Values.server.config.daily_reboot.enable }}
   restart-deployment.sh:  |
     #!/bin/bash
+    set -euo pipefail
     cont=$(kubectl -n {{ .Release.Namespace }} get pods -o=jsonpath='{.items[?(@.metadata.labels.app\.kubernetes\.io/name=="{{ .Release.Name }}-server")].metadata.name}')
     
     function exec_rcon_cmd() {
