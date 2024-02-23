@@ -1,6 +1,6 @@
 apiVersion: v2
 name: palworld
-version: 0.28.0
+version: 0.28.1
 description: Official helm chart for the palworld-server-docker docker image, deploys a dedicated PalWorld server to your Kubernetes cluster!
 type: application
 keywords:
@@ -22,7 +22,7 @@ maintainers:
 - name: Twinki14
   url: https://github.com/Twinki14
 icon: https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg
-appVersion: "v0.28.0"
+appVersion: "v0.28.1"
 deprecated: false
 annotations:
   artifacthub.io/alternativeName: palworld-server
@@ -34,7 +34,7 @@ annotations:
       url: https://github.com/thijsvanloef/palworld-server-docker
   artifacthub.io/images: |
     - name: palworld-server-docker
-      image: thijsvanloef/palworld-server-docker:v0.28.0
+      image: thijsvanloef/palworld-server-docker:v0.28.1
   artifacthub.io/screenshots: |
     - title: PalWorld
       url: https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg
