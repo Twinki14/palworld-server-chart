@@ -28,7 +28,7 @@ server:
   #
   image:
     repository: thijsvanloef/palworld-server-docker
-    tag: v0.26.0
+    tag: v0.27.0
     imagePullPolicy: IfNotPresent
     imagePullSecrets: []
 
@@ -54,20 +54,20 @@ server:
 
   # Liveness and readiness probes
   probes: {}
-    # liveness:
-    #   exec:
-    #     command:
-    #     - sh
-    #     - -c
-    #     - pgrep PalServer-Linux > /dev/null || exit 1
-    #   initialDelaySeconds: 30
-    # readiness:
-    #   exec:
-    #     command:
-    #     - sh
-    #     - -c
-    #     - rcon-cli Info | grep -q "Welcome to Pal Server"
-    #   initialDelaySeconds: 60
+  # liveness:
+  #   exec:
+  #     command:
+  #     - sh
+  #     - -c
+  #     - pgrep PalServer-Linux > /dev/null || exit 1
+  #   initialDelaySeconds: 30
+  # readiness:
+  #   exec:
+  #     command:
+  #     - sh
+  #     - -c
+  #     - rcon-cli Info | grep -q "Welcome to Pal Server"
+  #   initialDelaySeconds: 60
 
   # Container lifecycle
   terminationGracePeriodSeconds: 30
@@ -75,8 +75,8 @@ server:
     preStop:
       exec:
         command:
-          - bash
-          - /usr/local/bin/backup
+        - bash
+        - /usr/local/bin/backup
 
   # Service configuration
   #
@@ -139,10 +139,10 @@ server:
 
       # If provided, the password will be loaded from an existing secret
       externalPassword: {}
-        # The name of the secret containing the rcon password
-        # name: ""
-        # The key in the secret containing the rcon password
-        # key: ""
+      # The name of the secret containing the rcon password
+    # name: ""
+    # The key in the secret containing the rcon password
+    # key: ""
 
     # Community server settings
     #
@@ -150,8 +150,8 @@ server:
       enable: true
       password: ""
       externalPassword: {}
-        # name: ""
-        # key: ""
+      # name: ""
+    # key: ""
 
     # General server settings
     server_name: ""
