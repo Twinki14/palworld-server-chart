@@ -1,4 +1,4 @@
-{{- if not .Values.server.storage.external }}
+{{- if not .Values.server.storage.main.external }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -15,7 +15,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/component: "{{ .Release.Name }}-datadir-pvc"
     app.kubernetes.io/version: {{ .Chart.AppVersion }}
-    {{- if .Values.server.storage.preventDelete }}
+    {{- if .Values.server.storage.main.preventDelete }}
     helm.sh/resource-policy: keep
     {{ end }}
     {{- with .Values.server.config.labels }}
@@ -26,6 +26,72 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.server.storage.size }}
-  storageClassName: {{ .Values.server.storage.storageClassName }}
+      storage: {{ .Values.server.storage.main.size }}
+  storageClassName: {{ .Values.server.storage.main.storageClassName }}
+{{ end }}
+---
+{{- if and .Values.server.storage.backups.persistentVolumeClaim (not .Values.server.storage.backups.persistentVolumeClaim.external) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: "{{ .Release.Name }}-backups-pvc"
+  annotations:
+    {{- with .Values.server.config.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  labels:
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/name: "{{ .Release.Name }}-backups-pvc"
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: "{{ .Release.Name }}-backups-pvc"
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    {{- if .Values.server.storage.backups.persistentVolumeClaim.preventDelete }}
+    helm.sh/resource-policy: keep
+    {{ end }}
+    {{- with .Values.server.config.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.server.storage.backups.persistentVolumeClaim.size }}
+  storageClassName: {{ .Values.server.storage.backups.persistentVolumeClaim.storageClassName }}
+{{ end }}
+---
+{{- range $index, $element := .Values.server.storage.extra }}
+{{- if and $element.persistentVolumeClaim (not $element.external) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: {{ $.Release.Namespace }}
+  name: "{{ $.Release.Name }}-{{ $element.name }}-pvc"
+  annotations:
+    {{- with $.Values.server.config.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  labels:
+    helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/name: "{{ $.Release.Name }}-{{ $element.name }}-pvc"
+    app.kubernetes.io/managed-by: {{ $.Release.Service }}
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    app.kubernetes.io/component: "{{ $.Release.Name }}-{{ $element.name }}-pvc"
+    app.kubernetes.io/version: {{ $.Chart.AppVersion }}
+    {{- if $element.preventDelete }}
+    helm.sh/resource-policy: keep
+    {{ end }}
+    {{- with $.Values.server.config.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ $element.size }}
+  storageClassName: {{ $element.storageClassName }}
+{{ end }}
 {{ end }}

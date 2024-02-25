@@ -92,6 +92,16 @@ spec:
           volumeMounts:
             - mountPath: /palworld
               name: datadir
+            {{- if .Values.server.storage.backups }}
+            - mountPath: /palworld/backups
+              name: backups
+            {{- end }}
+            {{- range $index, $element := .Values.server.storage.extra }}
+            - mountPath: {{ $element.mountPath }}
+              readOnly: {{ $element.readOnly | default false }}
+              subPath: {{ $element.subPath | default "" }}
+              name: {{ $element.name }}
+            {{- end }}
       terminationGracePeriodSeconds: {{ .Values.server.terminationGracePeriodSeconds }}
       {{- with .Values.server.image.imagePullSecrets }}
       imagePullSecrets:
@@ -100,8 +110,143 @@ spec:
       volumes:
         - name: datadir
           persistentVolumeClaim:
-            {{- if not .Values.server.storage.external }}
+            {{- if not .Values.server.storage.main.external }}
             claimName: "{{ .Release.Name }}-datadir-pvc"
+            {{ else }}
+            claimName: "{{ .Values.server.storage.main.externalName }}"
+            {{ end }}
+        {{- if .Values.server.storage.backups }}
+        - name: backups
+          {{- if .Values.server.storage.backups.persistentVolumeClaim }}
+          persistentVolumeClaim:
+            {{- if and .Values.server.storage.backups.persistentVolumeClaim (not .Values.server.storage.backups.persistentVolumeClaim.external) }}
+            claimName: "{{ .Release.Name }}-backups-pvc"
             {{ else }}
             claimName: "{{ .Values.server.storage.externalName }}"
             {{ end }}
+          {{- else }}
+          {{ with .Values.server.storage.backups }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{ end }}
+        {{- end }}
+        {{- range $index, $element := .Values.server.storage.extra }}
+        {{- if $element.persistentVolumeClaim }}
+        - name: {{ $element.name }}
+          {{- if not $element.persistentVolumeClaim.external }}
+          persistentVolumeClaim:
+            claimName: "{{ $.Release.Name }}-{{ $element.name }}-pvc"
+          {{- else }}
+          persistentVolumeClaim:
+            claimName: "{{ $element.externalName }}"
+          {{- end }}
+        {{- else if $element.configMap }}
+        - name: {{ $element.name }}
+          configMap:
+            {{- toYaml $element.configMap | nindent 12 }}
+        {{- else if $element.secret }}
+        - name: {{ $element.name }}
+          secret:
+            {{- toYaml $element.secret | nindent 12 }}
+        {{- else if $element.downwardAPI }}
+        - name: {{ $element.name }}
+          downwardAPI:
+            {{- toYaml $element.downwardAPI | nindent 12 }}
+        {{- else if $element.projected }}
+        - name: {{ $element.name }}
+          projected:
+            {{- toYaml $element.projected | nindent 12 }}
+        {{- else if $element.emptyDir }}
+        - name: {{ $element.name }}
+          emptyDir:
+            {{- toYaml $element.emptyDir | nindent 12 }}
+        {{- else if $element.hostPath }}
+        - name: {{ $element.name }}
+          hostPath:
+            {{- toYaml $element.hostPath | nindent 12 }}
+        {{- else if $element.awsElasticBlockStore }}
+        - name: {{ $element.name }}
+          awsElasticBlockStore:
+            {{- toYaml $element.awsElasticBlockStore | nindent 12 }}
+        {{- else if $element.azureDisk }}
+        - name: {{ $element.name }}
+          azureDisk:
+            {{- toYaml $element.azureDisk | nindent 12 }}
+        {{- else if $element.azureFile }}
+        - name: {{ $element.name }}
+          azureFile:
+            {{- toYaml $element.azureFile | nindent 12 }}
+        {{- else if $element.cephfs }}
+        - name: {{ $element.name }}
+          cephfs:
+            {{- toYaml $element.cephfs | nindent 12 }}
+        {{- else if $element.cinder }}
+        - name: {{ $element.name }}
+          cinder:
+            {{- toYaml $element.cinder | nindent 12 }}
+        {{- else if $element.csi }}
+        - name: {{ $element.name }}
+          csi:
+            {{- toYaml $element.csi | nindent 12 }}
+        {{- else if $element.ephemeral }}
+        - name: {{ $element.name }}
+          ephemeral:
+            {{- toYaml $element.ephemeral | nindent 12 }}
+        {{- else if $element.fc }}
+        - name: {{ $element.name }}
+          fc:
+            {{- toYaml $element.fc | nindent 12 }}
+        {{- else if $element.flexVolume }}
+        - name: {{ $element.name }}
+          flexVolume:
+            {{- toYaml $element.flexVolume | nindent 12 }}
+        {{- else if $element.flocker }}
+        - name: {{ $element.name }}
+          flocker:
+            {{- toYaml $element.flocker | nindent 12 }}
+        {{- else if $element.gcePersistentDisk }}
+        - name: {{ $element.name }}
+          gcePersistentDisk:
+            {{- toYaml $element.gcePersistentDisk | nindent 12 }}
+        {{- else if $element.glusterfs }}
+        - name: {{ $element.name }}
+          glusterfs:
+            {{- toYaml $element.glusterfs | nindent 12 }}
+        {{- else if $element.iscsi }}
+        - name: {{ $element.name }}
+          iscsi:
+            {{- toYaml $element.iscsi | nindent 12 }}
+        {{- else if $element.nfs }}
+        - name: {{ $element.name }}
+          nfs:
+            {{- toYaml $element.nfs | nindent 12 }}
+        {{- else if $element.photonPersistentDisk }}
+        - name: {{ $element.name }}
+          photonPersistentDisk:
+            {{- toYaml $element.photonPersistentDisk | nindent 12 }}
+        {{- else if $element.portworxVolume }}
+        - name: {{ $element.name }}
+          portworxVolume:
+            {{- toYaml $element.portworxVolume | nindent 12 }}
+        {{- else if $element.quobyte }}
+        - name: {{ $element.name }}
+          quobyte:
+            {{- toYaml $element.quobyte | nindent 12 }}
+        {{- else if $element.rbd }}
+        - name: {{ $element.name }}
+          rbd:
+            {{- toYaml $element.rbd | nindent 12 }}
+        {{- else if $element.scaleIO }}
+        - name: {{ $element.name }}
+          scaleIO:
+            {{- toYaml $element.scaleIO | nindent 12 }}
+        {{- else if $element.storageos }}
+        - name: {{ $element.name }}
+          storageos:
+            {{- toYaml $element.storageos | nindent 12 }}
+        {{- else if $element.vsphereVolume }}
+        - name: {{ $element.name }}
+          vsphereVolume:
+            {{- toYaml $element.vsphereVolume | nindent 12 }}
+        {{ end }}
+        {{- end }}
