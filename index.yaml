@@ -5,6 +5,50 @@ entries:
       artifacthub.io/alternativeName: palworld-server
       artifacthub.io/images: |
         - name: palworld-server-docker
+          image: thijsvanloef/palworld-server-docker:v0.30.1
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Chart source
+          url: https://github.com/twinki14/palworld-server-chart
+        - name: Docker image source
+          url: https://github.com/thijsvanloef/palworld-server-docker
+      artifacthub.io/screenshots: |
+        - title: PalWorld
+          url: https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg
+    apiVersion: v2
+    appVersion: v0.30.1
+    created: "2024-03-05T03:14:20.377667881Z"
+    description: Official helm chart for the palworld-server-docker docker image,
+      deploys a dedicated PalWorld server to your Kubernetes cluster!
+    digest: b331a9395a5315bca16ba108dc2a01514bff4177054d776949f9f61c4ad88146
+    home: https://github.com/twinki14/palworld-server-chart
+    icon: https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg
+    keywords:
+    - palworld
+    - server
+    - kubernetes
+    - helm
+    - game
+    - dedicated-server
+    - game-server
+    maintainers:
+    - email: filipe.souza@mestre8d.com
+      name: Filipe Souza
+      url: https://github.com/Filipe-Souza
+    - name: Twinki14
+      url: https://github.com/Twinki14
+    name: palworld
+    sources:
+    - https://github.com/thijsvanloef/palworld-server-docker
+    - https://github.com/twinki14/palworld-server-chart
+    type: application
+    urls:
+    - https://github.com/Twinki14/palworld-server-chart/releases/download/0.30.1/palworld-0.30.1.tgz
+    version: 0.30.1
+  - annotations:
+      artifacthub.io/alternativeName: palworld-server
+      artifacthub.io/images: |
+        - name: palworld-server-docker
           image: thijsvanloef/palworld-server-docker:v0.29.0
       artifacthub.io/license: MIT
       artifacthub.io/links: |
@@ -702,4 +746,4 @@ entries:
     urls:
     - https://github.com/Twinki14/palworld-server-chart/releases/download/0.24.0/palworld-0.24.0.tgz
     version: 0.24.0
-generated: "2024-02-27T14:13:25.234013256Z"
+generated: "2024-03-05T03:14:20.377816842Z"
