@@ -97,7 +97,7 @@ server:
   #
   image:
     repository: thijsvanloef/palworld-server-docker
-    tag: v0.29.0
+    tag: v0.30.1
     imagePullPolicy: IfNotPresent
     imagePullSecrets: []
 
