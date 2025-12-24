@@ -187,6 +187,9 @@ server:
       protocol: TCP
       targetPort: 25575
 
+  # Security context for the container
+  securityContext: {}
+
   # Palworld-server specific configuration
   #
   config:

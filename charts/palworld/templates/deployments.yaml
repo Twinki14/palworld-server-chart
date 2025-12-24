@@ -250,3 +250,7 @@ spec:
             {{- toYaml $element.vsphereVolume | nindent 12 }}
         {{ end }}
         {{- end }}
+      securityContext:
+        {{- with .Values.server.securityContext }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
