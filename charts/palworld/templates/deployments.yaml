@@ -122,7 +122,7 @@ spec:
             {{- if and .Values.server.storage.backups.persistentVolumeClaim (not .Values.server.storage.backups.persistentVolumeClaim.external) }}
             claimName: "{{ .Release.Name }}-backups-pvc"
             {{ else }}
-            claimName: "{{ .Values.server.storage.externalName }}"
+            claimName: "{{ .Values.server.storage.backups.persistentVolumeClaim.externalName }}"
             {{ end }}
           {{- else }}
           {{ with .Values.server.storage.backups }}
