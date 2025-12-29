@@ -41,8 +41,8 @@ jobs:
         # Supported versions at https://kubernetes.io/releases/
         version:
         - v1.32.11 # EOL 2026-02-28
-        - v1.33.6 # EOL 2026-06-28
-        - v1.34.2 # EOL 2026-10-27
+        - v1.33.7 # EOL 2026-06-28
+        - v1.34.3 # EOL 2026-10-27
         - v1.35.0 # EOL 2027-02-28
     steps:
       - name: Checkout
